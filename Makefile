@@ -9,13 +9,13 @@ dropdb:
 	docker exec -it postgres dropdb bank_app
 
 new_migration:
-	migrate create -ext sql -seq -dir db/migrations $(name)
+	migrate create -ext sql -seq -dir internal/migrations $(name)
 
 migrate_up1:
-	migrate -path db/migrations -database "$(DB_URL)" -verbose up
+	migrate -path internal/migrations -database "$(DB_URL)" -verbose up
 
 migrate_down1:
-	migrate -path db/migrations -database "$(DB_URL)" -verbose down 1
+	migrate -path internal/migrations -database "$(DB_URL)" -verbose down 1
 
 sqlc:
 	sqlc generate
